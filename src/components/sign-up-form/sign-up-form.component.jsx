@@ -77,7 +77,7 @@ const SignUpForm = () => {
           onChange={handleChange} />
         {!arePasswordsMatching && <span>Passwords do not match</span>}
 
-        <Button disabled={!arePasswordsMatching}>Submit</Button>
+        <Button disabled={!arePasswordsMatching}>SIGN UP</Button>
       </form>
     </div>
   )
