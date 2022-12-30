@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
+import Button from "../button/button.component";
+import FormInput from "../form-input/form-input.component";
+import './sign-up-form.styles.scss';
 
 const defaultFormFields = {
   displayName: '',
@@ -41,23 +44,40 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <h1>Sign up with your email and password</h1>
+    <div className="sign-up-container">
+      <h2>Don't have an account?</h2>
+      <span>Sign up with your email and password</span>
       <form onSubmit={onSubmit}>
-        <label>Display name</label>
-        <input type="text" required onChange={handleChange} name="displayName" value={displayName} />
-        
-        <label>Email</label>
-        <input type="email" required  onChange={handleChange} name="email" value={email} />
-        
-        <label>Password</label>
-        <input type="password" required  onChange={handleChange} name="password"  value={password} />
+        <FormInput 
+          label={'Display name'} 
+          name={'displayName'}
+          value={displayName}
+          type={'text'}
+          onChange={handleChange} />
 
-        <label>Confirm password</label>
-        <input type="password" required  onChange={handleChange} name="confirmPassword"  value={confirmPassword} />
+        <FormInput 
+          label={'Email'} 
+          name={'email'}
+          value={email}
+          type={'email'}
+          onChange={handleChange} />
+          
+        <FormInput 
+          label={'Password'} 
+          name={'password'}
+          value={password}
+          type={'password'}
+          onChange={handleChange} />
+        
+        <FormInput 
+          label={'Confirm password'} 
+          name={'confirmPassword'}
+          value={confirmPassword}
+          type={'password'}
+          onChange={handleChange} />
         {!arePasswordsMatching && <span>Passwords do not match</span>}
 
-        <input type='submit' value="Submit" disabled={!arePasswordsMatching} />
+        <Button disabled={!arePasswordsMatching}>Submit</Button>
       </form>
     </div>
   )
