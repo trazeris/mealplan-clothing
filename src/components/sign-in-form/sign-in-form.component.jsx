@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createUserDocumentFromAuth, signInWithEmailPassword, signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
+import { signInWithEmailPassword, signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
 
@@ -25,8 +25,7 @@ const SignInForm = () => {
 
   const signInWithCredentials = async () => {
     try {
-      const {user} = await signInWithEmailPassword(email, password);
-      await createUserDocumentFromAuth(user);
+      await signInWithEmailPassword(email, password);
       resetFormFields();
     } catch(error) {
       console.log('Error while signin in ', error);
@@ -35,8 +34,7 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     try {
-      const {user} = await signInWithGooglePopup();
-      await createUserDocumentFromAuth(user);
+      await signInWithGooglePopup();
       resetFormFields();
     } catch(error) {
       console.log('Error while signin in ', error);

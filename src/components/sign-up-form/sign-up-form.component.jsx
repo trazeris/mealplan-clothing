@@ -16,7 +16,6 @@ const SignUpForm = () => {
   const [arePasswordsMatching, setArePasswordsMatching] = useState(true);
   const { displayName, email, password, confirmPassword } = formFields;
 
-
   useEffect(() => {
     setArePasswordsMatching(password === confirmPassword);
   }, [password, confirmPassword])
