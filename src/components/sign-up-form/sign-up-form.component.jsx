@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
+import { useDispatch } from "react-redux";
+import { signUpStart } from "../../store/user/user.action";
 import { Button } from "../button/button.styles";
 import FormInput from "../form-input/form-input.component";
 import { AuthFormContainer } from "../sign-in-form/sign-in-form.styles";
@@ -15,6 +16,7 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [arePasswordsMatching, setArePasswordsMatching] = useState(true);
   const { displayName, email, password, confirmPassword } = formFields;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setArePasswordsMatching(password === confirmPassword);
@@ -32,13 +34,8 @@ const SignUpForm = () => {
   const onSubmit = async (event) => {
     event.preventDefault();
     if(arePasswordsMatching) {
-      try {
-        const userAuth = await createAuthUserWithEmailAndPassword(email, password);
-        await createUserDocumentFromAuth({...userAuth.user, displayName: displayName});
-        resetFormFields();
-      } catch(error) {
-        console.log('Error while creating user ', error);
-      }
+      dispatch(signUpStart(email, password, displayName));
+      resetFormFields();
     }
   };
 

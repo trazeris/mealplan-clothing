@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { signInWithEmailPassword, signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
+import { useDispatch } from "react-redux";
 import { Button, GoogleSignInButton } from "../button/button.styles";
 import FormInput from "../form-input/form-input.component";
 import { ButtonsContainer, AuthFormContainer } from "./sign-in-form.styles";
-
-
+import { emailSignInStart, googleSignInStart } from '../../store/user/user.action';
+ 
 const defaultFormFields = {
   email: '',
   password: ''
@@ -13,6 +13,7 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const dispatch = useDispatch();
   
   const handleChange = ({target}) => {
     const {name, value} = target;
@@ -25,7 +26,7 @@ const SignInForm = () => {
 
   const signInWithCredentials = async () => {
     try {
-      await signInWithEmailPassword(email, password);
+      dispatch(emailSignInStart(email, password));
       resetFormFields();
     } catch(error) {
       console.log('Error while signin in ', error);
@@ -34,7 +35,7 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     try {
-      await signInWithGooglePopup();
+      dispatch(googleSignInStart());
       resetFormFields();
     } catch(error) {
       console.log('Error while signin in ', error);
