@@ -27,7 +27,7 @@ const Navigation = () => {
         </LogoContainerLink>
         <NavLinksContainer>
           <NavigationLink to='/shop'>
-            Shop
+            {process.env.STRIPE_PUBLIC_KEY}
           </NavigationLink>
           { 
             currentUser ? 
