@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { InvertedButton } from "../button/button.styles";
 
 
 export const PaymentFormContainer = styled.div`
@@ -7,9 +8,15 @@ export const PaymentFormContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 `;
 
 export const PayForm = styled.form`
   height: 100px;
-  min-width: 500px;
+  width: 100%;
+`;
+
+export const PaymentButton = styled(InvertedButton)`
+  margin-left: auto;
+  margin-top: 30px;
 `;

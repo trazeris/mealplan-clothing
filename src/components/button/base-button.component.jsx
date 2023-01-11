@@ -1,7 +1,9 @@
-const BaseButton = ({children, buttonType, ...otherProps}) => {
+import { ButtonSpinner } from "./button.styles";
+
+const BaseButton = ({children, buttonType, isLoading, ...otherProps}) => {
   return (
-    <button {...otherProps}>
-      {children}
+    <button disabled={isLoading} {...otherProps}>
+      {isLoading ? <ButtonSpinner /> : children}
     </button>
   )
 }
