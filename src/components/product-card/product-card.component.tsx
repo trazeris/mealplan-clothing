@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { cartAddProduct } from '../../store/cart/cart.action';
+import { Product } from '../../store/categories/categories.types';
 import {
   Footer,
   Name,
@@ -9,7 +10,11 @@ import {
   Image,
 } from './product-card.styles';
 
-const ProductCard = ({ product }) => {
+type ProductCardProps = {
+  product: Product;
+};
+
+const ProductCard = ({ product }: ProductCardProps) => {
   const { name, price, imageUrl } = product;
   const dispatch = useDispatch();
 

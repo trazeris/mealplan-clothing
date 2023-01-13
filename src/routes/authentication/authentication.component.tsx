@@ -1,7 +1,10 @@
 import { useSelector } from 'react-redux';
 import SignInForm from '../../components/sign-in-form/sign-in-form.component';
 import SignUpForm from '../../components/sign-up-form/sign-up-form.component';
-import { selectCurrentUser, selectIsAuthLoading } from '../../store/user/user.selector';
+import {
+  selectCurrentUser,
+  selectIsAuthLoading,
+} from '../../store/user/user.selector';
 import { AuthContainer } from './authentication.styles';
 import Spinner from '../../components/spinner/spinner.component';
 import { useNavigate } from 'react-router-dom';

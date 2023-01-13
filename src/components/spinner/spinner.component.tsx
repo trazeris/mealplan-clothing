@@ -1,6 +1,11 @@
+import { ReactNode } from 'react';
 import { SpinnerContainer, SpinnerOverlay } from './spinner.styles';
 
-const Spinner = ({ children }) => {
+type Spinner = {
+  children?: ReactNode;
+};
+
+const Spinner = ({ children }: Spinner) => {
   return (
     <SpinnerOverlay>
       <SpinnerContainer />

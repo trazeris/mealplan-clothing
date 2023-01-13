@@ -1,4 +1,10 @@
-import { useEffect, useState } from 'react';
+import { AuthError, AuthErrorCodes } from 'firebase/auth';
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from 'react';
 import { useDispatch } from 'react-redux';
 import { signUpStart } from '../../store/user/user.action';
 import { Button } from '../button/button.styles';
@@ -22,7 +28,7 @@ const SignUpForm = () => {
     setArePasswordsMatching(password === confirmPassword);
   }, [password, confirmPassword]);
 
-  const handleChange = ({ target }) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
     const { name, value } = target;
     setFormFields((prev) => ({ ...prev, [name]: value }));
   };
@@ -31,17 +37,25 @@ const SignUpForm = () => {
     setFormFields(defaultFormFields);
   };
 
-  const onSubmit = async (event) => {
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     if (arePasswordsMatching) {
-      dispatch(signUpStart(email, password, displayName));
-      resetFormFields();
+      try {
+        dispatch(signUpStart(email, password, displayName));
+        resetFormFields();
+      } catch (error) {
+        if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
+          console.log('Cannot create user, email already in use');
+        } else {
+          console.log('user creatiion failed');
+        }
+      }
     }
   };
 
   return (
     <AuthFormContainer>
-      <h2>Don't have an account?</h2>
+      <h2>Don&apos;t have an account?</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={onSubmit}>
         <FormInput

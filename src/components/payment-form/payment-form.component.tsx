@@ -1,9 +1,13 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { useState } from 'react';
+import { FormEventHandler, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectCartItemsTotal } from '../../store/cart/cart.selector';
 import { selectCurrentUser } from '../../store/user/user.selector';
-import { PaymentFormContainer, PayForm, PaymentButton } from './payment-form.styles';
+import {
+  PaymentFormContainer,
+  PayForm,
+  PaymentButton,
+} from './payment-form.styles';
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -12,13 +16,12 @@ const PaymentForm = () => {
   const cartTotal = useSelector(selectCartItemsTotal);
   const currentUser = useSelector(selectCurrentUser);
 
-  const paymentHandler = async (e) => {
+  const paymentHandler: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     if (stripe && elements) {
       setIsProcessingPayment(true);
       const response = await fetch('/api/create-payment-intent', {
         method: 'post',
-        port: 9999,
         headers: {
           'Content-type': 'application/json',
         },
@@ -26,14 +29,21 @@ const PaymentForm = () => {
       }).then((res) => res.json());
 
       const { paymentIntent } = response;
-      const paymentResult = await stripe.confirmCardPayment(paymentIntent.client_secret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-          billing_details: {
-            name: currentUser ? currentUser.displayName : 'Guest',
+      const cardDetails = elements.getElement(CardElement);
+
+      if (cardDetails === null) return;
+
+      const paymentResult = await stripe.confirmCardPayment(
+        paymentIntent.client_secret,
+        {
+          payment_method: {
+            card: cardDetails,
+            billing_details: {
+              name: currentUser ? currentUser.displayName : 'Guest',
+            },
           },
-        },
-      });
+        }
+      );
       setIsProcessingPayment(false);
 
       if (paymentResult.error) {

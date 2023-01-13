@@ -1,8 +1,18 @@
 import { Link } from 'react-router-dom';
+import { Product } from '../../store/categories/categories.types';
 import ProductCard from '../product-card/product-card.component';
-import { CategoryPreviewContainer, Preview, Title } from './category-preview.styles';
+import {
+  CategoryPreviewContainer,
+  Preview,
+  Title,
+} from './category-preview.styles';
 
-const CategoryPreview = ({ title, products }) => {
+type CategoryPreviewProps = {
+  title: string;
+  products: Product[];
+};
+
+const CategoryPreview = ({ title, products }: CategoryPreviewProps) => {
   return (
     <CategoryPreviewContainer>
       <Title>

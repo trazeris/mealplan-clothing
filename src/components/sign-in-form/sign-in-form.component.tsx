@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { ChangeEventHandler, FormEventHandler, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, GoogleSignInButton } from '../button/button.styles';
 import FormInput from '../form-input/form-input.component';
 import { ButtonsContainer, AuthFormContainer } from './sign-in-form.styles';
-import { emailSignInStart, googleSignInStart } from '../../store/user/user.action';
+import {
+  emailSignInStart,
+  googleSignInStart,
+} from '../../store/user/user.action';
 
 const defaultFormFields = {
   email: '',
@@ -15,7 +18,7 @@ const SignInForm = () => {
   const { email, password } = formFields;
   const dispatch = useDispatch();
 
-  const handleChange = ({ target }) => {
+  const handleChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {
     const { name, value } = target;
     setFormFields((prev) => ({ ...prev, [name]: value }));
   };
@@ -42,7 +45,7 @@ const SignInForm = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
     signInWithCredentials();
   };

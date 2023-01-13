@@ -4,8 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { cartToggle } from '../../store/cart/cart.action';
 import { selectCartItems } from '../../store/cart/cart.selector';
 import { Button } from '../button/button.styles';
-import CartItem from '../cart-item/cart-item.component';
-import { CartDropdownContainer, CartItems, EmptyMessage } from './cart-dropdown.styles';
+import CartItemElement from '../cart-item/cart-item.component';
+import {
+  CartDropdownContainer,
+  CartItems,
+  EmptyMessage,
+} from './cart-dropdown.styles';
 
 const CartDropdown = () => {
   const cartItems = useSelector(selectCartItems);
@@ -22,7 +26,9 @@ const CartDropdown = () => {
     <CartDropdownContainer>
       <CartItems>
         {cartItems.length ? (
-          cartItems.map((item) => <CartItem key={item.id} cartItem={item} />)
+          cartItems.map((item) => (
+            <CartItemElement key={item.id} cartItem={item} />
+          ))
         ) : (
           <EmptyMessage>Empty cart</EmptyMessage>
         )}

@@ -5,6 +5,7 @@ import {
   cartDecreaseProductQuantity,
   cartDeleteProduct,
 } from '../../store/cart/cart.action';
+import { CartItem } from '../../store/cart/cart.types';
 import {
   Arrow,
   CheckoutItemContainer,
@@ -16,7 +17,11 @@ import {
   Value,
 } from './checkout-item.styles';
 
-const CheckoutItem = ({ item }) => {
+type CheckoutItemProps = {
+  item: CartItem;
+};
+
+const CheckoutItem = ({ item }: CheckoutItemProps) => {
   const { name, imageUrl, price, quantity } = item;
   const dispatch = useDispatch();
 
@@ -33,7 +38,9 @@ const CheckoutItem = ({ item }) => {
       </ImageContainer>
       <Field>{name}</Field>
       <Quantity>
-        <Arrow className={`${quantity === 1 && 'disabled'}`} onClick={decreaseHandler}>
+        <Arrow
+          className={`${quantity === 1 && 'disabled'}`}
+          onClick={decreaseHandler}>
           &#10094;
         </Arrow>
         <Value>{quantity}</Value>
