@@ -15,7 +15,7 @@ const CartIcon = () => {
       <ShoppingIcon />
       <ItemCount>{totalItemsCount}</ItemCount>
     </CartIconContainer>
-  )
-}
+  );
+};
 
 export default CartIcon;

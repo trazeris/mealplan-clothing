@@ -1,9 +1,7 @@
-import Directory from "../../components/directory/directory.component";
+import Directory from '../../components/directory/directory.component';
 
 function Home() {
-  return (
-    <Directory />
-  );
+  return <Directory />;
 }
 
 export default Home;

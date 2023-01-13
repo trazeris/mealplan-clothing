@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const AuthFormContainer = styled.div`
   display: flex;
@@ -7,8 +7,8 @@ export const AuthFormContainer = styled.div`
   h2 {
     margin: 10px 0;
   }
-`
+`;
 export const ButtonsContainer = styled.div`
   display: flex;
   justify-content: space-between;
-`
+`;

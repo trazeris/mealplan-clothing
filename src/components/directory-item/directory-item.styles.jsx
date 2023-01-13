@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const BackgroundImage = styled.div`
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
-  background-image: ${({imageUrl}) => `url(${imageUrl})`};
-`
+  background-image: ${({ imageUrl }) => `url(${imageUrl})`};
+`;
 export const DirectoryItemBody = styled.div`
   height: 90px;
   padding: 0 25px;
@@ -28,7 +28,7 @@ export const DirectoryItemBody = styled.div`
     font-weight: lighter;
     font-size: 16px;
   }
-`
+`;
 export const DirectoryItemContainer = styled.div`
   min-width: 30%;
   height: 350px;
@@ -58,4 +58,4 @@ export const DirectoryItemContainer = styled.div`
   &:last-child {
     margin-left: 7.5px;
   }
-`
+`;

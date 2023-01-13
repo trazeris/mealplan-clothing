@@ -1,4 +1,3 @@
-
 import { useSelector } from 'react-redux';
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
 import PaymentForm from '../../components/payment-form/payment-form.component';
@@ -29,11 +28,13 @@ const Checkout = () => {
           <span></span>
         </HeaderBlock>
       </CheckoutHeader>
-      {cartItems.map((item) => (<CheckoutItem key={item.id} item={item} />))}
+      {cartItems.map((item) => (
+        <CheckoutItem key={item.id} item={item} />
+      ))}
       <Total>Total: ${totalItemsPrice}</Total>
       <PaymentForm />
     </CheckoutContainer>
-  )
-}
+  );
+};
 
 export default Checkout;

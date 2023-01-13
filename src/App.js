@@ -1,12 +1,12 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Route, Routes } from "react-router-dom";
-import Authentication from "./routes/authentication/authentication.component";
-import Checkout from "./routes/checkout/checkout.component";
-import Home from "./routes/home/home.component";
-import Navigation from "./routes/navigation/navigation.component";
-import Shop from "./routes/shop/shop.component";
-import { checkUserSession } from "./store/user/user.action";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import Authentication from './routes/authentication/authentication.component';
+import Checkout from './routes/checkout/checkout.component';
+import Home from './routes/home/home.component';
+import Navigation from './routes/navigation/navigation.component';
+import Shop from './routes/shop/shop.component';
+import { checkUserSession } from './store/user/user.action';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,6 +25,6 @@ const App = () => {
       </Route>
     </Routes>
   );
-}
+};
 
 export default App;

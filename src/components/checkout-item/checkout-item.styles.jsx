@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CheckoutItemContainer = styled.div`
   width: 100%;
@@ -8,32 +8,32 @@ export const CheckoutItemContainer = styled.div`
   padding: 15px 0;
   font-size: 20px;
   align-items: center;
-`
+`;
 export const ImageContainer = styled.div`
   width: 23%;
   padding-right: 15px;
-`
+`;
 export const Image = styled.img`
   width: 100%;
   height: 100%;
-`
+`;
 export const Field = styled.span`
   width: 23%;
-`
-export const RemoveButton =  styled.div`
+`;
+export const RemoveButton = styled.div`
   padding-left: 12px;
   cursor: pointer;
-`
+`;
 export const Quantity = styled(Field)`
   display: flex;
-`
+`;
 export const Arrow = styled.div`
   cursor: pointer;
   &.disabled {
     cursor: not-allowed;
     color: lightgrey;
   }
-`
+`;
 export const Value = styled.div`
   margin: 0 10px;
-`
+`;
